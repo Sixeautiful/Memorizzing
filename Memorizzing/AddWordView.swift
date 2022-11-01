@@ -16,6 +16,9 @@ struct AddWordView: View {
     @State private var translateWord:String = ""
     @State private var describingWord:String = ""
     
+    // var addNewWord = addNewWord()
+    // Add model of function, witch will append new word in to voc arr
+    
     var body: some View { 
         VStack(spacing: 30){
             Text("Memorizzing")
@@ -29,13 +32,14 @@ struct AddWordView: View {
             //Text("discribing(optional)")
             Text(translation[0])
             Button("Save"){
+                //if add
+                print(word[0])
                 word[0] = originalWord
                 originalWord = ""
                 translation[0] = translateWord
                 translateWord = ""
                describing[0] = describingWord
                 describingWord = ""
-                
             }
            
             Spacer()
