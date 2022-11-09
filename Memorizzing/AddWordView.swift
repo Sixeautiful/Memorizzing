@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct AddWordView: View {
-    @Binding var word:[String] 
-    @Binding var translation:[String]
-    @Binding var describing:[String]
+   
+    @EnvironmentObject var Vocabulary: addNewWord
     
     @State private var originalWord:String = ""
     @State private var translateWord:String = ""
@@ -26,20 +25,14 @@ struct AddWordView: View {
             Spacer()
             TextField("Enter your word!", text: $originalWord )
             TextField("Enter  translation of your word!", text: $translateWord )
-            //Text("field for word")
             TextField("Enter describing of your word!", text: $describingWord )
-            //Text("field for word translation")
-            //Text("discribing(optional)")
-            Text(translation[0])
+           
             Button("Save"){
-                //if add
-                print(word[0])
-                word[0] = originalWord
+                Vocabulary.addNewWord(word: originalWord, trans: translateWord, description: describingWord)
                 originalWord = ""
-                translation[0] = translateWord
                 translateWord = ""
-               describing[0] = describingWord
                 describingWord = ""
+              
             }
            
             Spacer()
@@ -50,6 +43,7 @@ struct AddWordView: View {
 
 struct AddWordView_Previews: PreviewProvider {
     static var previews: some View {
-        AddWordView(word: .constant([""]), translation: .constant([""]), describing: .constant([""]))
+        AddWordView()
+           
     }
 }

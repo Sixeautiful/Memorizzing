@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-   // @Binding var vocabularyModel:[String]
-    @ObservedObject var vocabularyModel = Vocabulary()
-   // ContentView().environmentObject(Vocabulary())
-    let vocModel = Vocabulary()
+  
     var body: some View {
         TabView{
-            AddWordView(word: $vocabularyModel.word, translation: $vocabularyModel.translation, describing: $vocabularyModel.describing)
+            AddWordView()
                 .tabItem {
                     Label("Home", systemImage: "list.dash")
                 }
-            VocabularyView(word: $vocabularyModel.word, translation: $vocabularyModel.translation, describing: $vocabularyModel.describing)
+            VocabularyView()
                 .tabItem {
                     Label("Vocabulary", systemImage: "list.dash")
                 }
@@ -30,6 +27,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(vocabularyModel: Vocabulary())
+        ContentView()
+            .environmentObject(addNewWord())
     }
 }
